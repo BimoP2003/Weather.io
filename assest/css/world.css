@@ -1,0 +1,193 @@
+/* Mengatur tampilan tema gelap */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0e0e10;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: auto;
+}
+
+/* Navbar di atas */
+.navbar {
+    background-color: #1c1c1e;
+    padding: 10px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10px;
+    margin: 10px 0;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.navbar ul li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #29292e;
+    color: #b3b3b3;
+    font-size: 20px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+    background-color: #3a3a3e;
+}
+
+/* Container utama agar elemen berada di tengah */
+.container {
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Bagian tanggal */
+.date {
+    font-size: 22px;
+    font-weight: bold;
+    color: #b3b3b3;
+    margin-bottom: 15px;
+}
+
+/* Kotak cuaca */
+.weather-cards {
+    display: flex;
+    justify-content: center; /* Pusatkan elemen */
+    flex-wrap: wrap; /* Agar responsif jika layar kecil */
+    gap: 15px; /* Jarak antar kartu */
+}
+
+.weather-card {
+    background-color: #1e1e1e;
+    color: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    font-size: 22px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Perbesar ikon cuaca */
+.weather-card img {
+    width: 70px;
+}
+
+/* MEDIA QUERIES */
+
+/* Untuk layar ponsel kecil (maksimum 480px) */
+@media screen and (max-width: 480px) {
+    body {
+        height: auto;
+        padding: 20px;
+    }
+
+    .navbar {
+        width: fit-content;
+        padding: 5px;
+        border-radius: 0;
+        margin: 10px auto;
+        max-width: 300px;
+    }
+
+    .navbar ul {
+        gap: 10px;
+    }
+
+    .navbar ul li a {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .date {
+        font-size: 18px;
+    }
+
+    .weather-card {
+        padding: 20px;
+        font-size: 18px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .weather-card img {
+        width: 50px;
+        margin-bottom: 10px;
+    }
+}
+
+/* Untuk layar tablet (481px - 768px) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .navbar {
+        width: 80%;
+    }
+
+    .navbar ul li a {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+
+    .container {
+        width: 85%;
+    }
+
+    .date {
+        font-size: 20px;
+    }
+
+    .weather-card {
+        font-size: 20px;
+        padding: 25px;
+    }
+
+    .weather-card img {
+        width: 60px;
+    }
+}
+
+/* Untuk layar laptop dan lebih besar (769px ke atas) */
+@media screen and (min-width: 769px) {
+    .navbar {
+        width: fit-content;
+    }
+
+    .container {
+        width: 60%;
+    }
+
+    .weather-card {
+        font-size: 22px;
+    }
+}

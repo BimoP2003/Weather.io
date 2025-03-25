@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Weather</title>
+    <link rel="stylesheet" href="./assest/css/world.css">
+    <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="date">
+            <p id="currentDate"></p>
+        </div>
+
+        <div class="weather-cards">
+            <div class="weather-card">
+                <h2>London</h2>
+                <p class="temp" id="temp-london">--°</p>
+                <img id="icon-london" src="" alt="Loading...">
+            </div>
+            <div class="weather-card">
+                <h2>Jakarta</h2>
+                <p class="temp" id="temp-jakarta">--°</p>
+                <img id="icon-jakarta" src="" alt="Loading...">
+            </div>
+            <div class="weather-card">
+                <h2>Paris</h2>
+                <p class="temp" id="temp-paris">--°</p>
+                <img id="icon-paris" src="" alt="Loading...">
+            </div>
+            <div class="weather-card">
+                <h2>Depok</h2>
+                <p class="temp" id="temp-depok">--°</p>
+                <img id="icon-depok" src="" alt="Loading...">
+            </div>
+        </div>
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-location-arrow"></i></a></li>
+                <li><a href="world.html" class="active"><i class="fas fa-globe"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        // **1️⃣ View Date**
+        document.getElementById("currentDate").innerText = new Date().toLocaleDateString('id-ID', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // **2️⃣ API OpenWeather**
+        const apiKey = "511c0d53e786d6e701870951d85c605d"; // 🔴 Ganti dengan API Key OpenWeather
+
+        // **3️⃣ View Weather from OpenWeather**
+        function fetchWeather(city, tempElement, iconElement) {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(`${city} Weather:`, data);
+                    document.getElementById(tempElement).innerText = `${Math.round(data.main.temp)}°C`;
+                    const iconCode = data.weather[0].icon;
+                    document.getElementById(iconElement).src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+                    document.getElementById(iconElement).alt = data.weather[0].description;
+                })
+                .catch(error => {
+                    console.error(`Error fetching ${city} weather:`, error);
+                });
+        }
+
+        // **4️⃣  Call Function for Every City**
+        fetchWeather("London", "temp-london", "icon-london");
+        fetchWeather("Jakarta", "temp-jakarta", "icon-jakarta");
+        fetchWeather("Paris", "temp-paris", "icon-paris");
+        fetchWeather("Depok", "temp-depok", "icon-depok");
+
+    </script>
+
+</body>
+</html>
